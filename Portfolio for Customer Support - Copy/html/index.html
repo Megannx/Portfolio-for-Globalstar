@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Megan White | Customer Relations Specialist Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .hero {
+      background-color: #3273dc;
+      color: white;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .footer {
+      background-color: #f5f5f5;
+      padding: 10px 0;
+    }
+    .contact-info {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .contact-info i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">Megan White</h1>
+        <h2 class="subtitle">Customer Relations Specialist Portfolio</h2>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <h2 class="title">About Me</h2>
+        <p>I am a motivated individual passionate about delivering exceptional customer service and resolving issues effectively. My diverse experience includes developing software solutions that enhance user experience, which has equipped me with strong communication skills and a problem-solving mindset. Through my programming work, I've learned to leverage technology to streamline processes, enabling me to provide efficient and effective support to customers.</p>
+      </div>
+      <div class="column is-6">
+        <h2 class="title">Contact</h2>
+        <div class="contact-info">
+          <i class="fas fa-envelope"></i>
+          <p><a href="mailto:mnwhite110@gmail.com">mnwhite110@gmail.com</a></p>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-phone"></i>
+          <p>(336) 486-9778</p> <!-- Replace with your actual phone number -->
+        </div>
+        <div class="contact-info">
+          <i class="fab fa-linkedin"></i>
+          <p><a href="https://www.linkedin.com/in/megannx/" target="_blank">linkedin.com/in/meganwhite</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-12">
+        <h2 class="title">Skills</h2>
+        <div class="content">
+          <ul>
+            <li>Excellent Communication</li>
+            <li>Problem Solving</li>
+            <li>Team Collaboration</li>
+            <li>Customer Service Orientation</li>
+            <li>Software Programming</li>
+            <li>Technical Proficiency</li>
+            <li>Virtual Communication</li>
+            <li>Adaptability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-12">
+        <h2 class="title has-text-centered">Projects</h2>
+        <div class="card">
+          <div class="card-content">
+            <p class="title">Business Database System</p>
+            <p class="subtitle">This project is dedicated to efficiently gathering and analyzing data to identify a company's key departments, roles, and salary structures. Through systematic research and analysis, it aims to provide valuable insights that support informed decision-making and organizational development.</p>
+            <p>Technologies Used: <strong>Javascript, Node, SQL</strong></p>
+            <button class="button is-link" data-project="Business Database System">View Project</button>
+            <a href="https://github.com/Megannx/Business-DB-Manager" class="button is-link" target="_blank">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <p class="title">E-Commerce Business Database</p>
+            <p class="subtitle">Developed a modern backend for an e-commerce platform to enhance operational efficiency and user experience. Utilizing the latest technologies, this project optimizes product management, secure payments, and order fulfillment, ensuring competitiveness in the e-commerce market.</p>
+            <p>Technologies Used: <strong>Javascript, Node, SQL, Insomnia, APIs, Seeds</strong></p>
+            <button class="button is-link" data-project="E-Commerce Business Database">View Project</button>
+            <a href="https://github.com/Megannx/E-Commerce-Challenge" class="button is-link" target="_blank">GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div class="modal" id="project-modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <h2 id="modal-project-title" class="title"></h2>
+          <p id="modal-project-description"></p>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>&copy; 2024 Megan White | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+  <script>
+    // Wait for the DOM to fully load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize AOS
+      AOS.init();
+
+      // Get modal elements
+      const projectModal = document.getElementById('project-modal');
+      const modalTitle = document.getElementById('modal-project-title');
+      const modalDescription = document.getElementById('modal-project-description');
+
+      // Event listener for project buttons
+      document.querySelectorAll('.button[data-project]').forEach(button => {
+        button.addEventListener('click', (event) => {
+          const projectName = event.currentTarget.getAttribute('data-project');
+          showModal(projectName);
+        });
+      });
+
+      // Function to show the modal
+      function showModal(projectName) {
+        modalTitle.textContent = projectName;
+        modalDescription.textContent = getProjectDescription(projectName);
+        projectModal.classList.add('is-active');
+      }
+
+      // Function to hide the modal when clicking outside of it
+      projectModal.addEventListener('click', (event) => {
+        if (event.target === projectModal || event.target.classList.contains('modal-background')) {
+          projectModal.classList.remove('is-active');
+        }
+      });
+    });
+
+    // Function to get project description based on project name
+    function getProjectDescription(projectName) {
+      const descriptions = {
+        'Business Database System': 'This project is dedicated to efficiently gathering and analyzing data to identify a company\'s key departments, roles, and salary structures. It aims to provide valuable insights that support informed decision-making and organizational development.',
+        'E-Commerce Business Database': 'Developed a modern backend for an e-commerce platform to enhance operational efficiency and user experience. This project optimizes product management, secure payments, and order fulfillment, ensuring competitiveness in the e-commerce market.'
+      };
+      return descriptions[projectName] || 'Description not available.';
+    }
+  </script>
+</body>
+</html>
